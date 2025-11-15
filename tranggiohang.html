@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giỏ hàng</title>
+<link rel="stylesheet" href="/giohang.css">
+</head>
+<body>
+
+<!-- Nút quay lại trang chủ -->
+<a href="/baitap.html" class="back-home">← Quay lại trang chủ</a>
+
+<h2>Giỏ hàng của bạn</h2>
+<div id="cart-items"></div>
+<p id="cart-empty">Giỏ hàng đang trống!</p>
+
+<div class="cart-footer">
+    <span>Tổng tiền: <span id="total-price">0</span> VND</span>
+    <button id="buy-now">Mua ngay</button>
+</div>
+
+<script>
+const cartItems = document.getElementById('cart-items');
+const cartEmpty = document.getElementById('cart-empty');
+const totalPriceEl = document.getElementById('total-price');
+const buyNowBtn = document.getElementById('buy-now');
+
+// Lấy dữ liệu giỏ hàng từ localStorage
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+if(cart.length > 0) {
+    cartEmpty.style.display = 'none';
+
+    cart.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.classList.add('cart-item');
+        div.innerHTML = `
+            <input type="checkbox" class="select-item" data-index="${index}" checked>
+            <img src="${item.imgSrc}" alt="">
+            <div class="info">
+                <h4>${item.name}</h4>
+                <p>${item.price}</p>
+            </div>
+            <button class="remove" data-index="${index}">Xóa</button>
+        `;
+        cartItems.appendChild(div);
+    });
+
+    updateTotal();
+
+    // Xóa sản phẩm
+    cartItems.addEventListener('click', (e) => {
+        if(e.target.classList.contains('remove')){
+            const idx = e.target.dataset.index;
+            cart.splice(idx, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            location.reload();
+        }
+    });
+
+    // Checkbox chọn sản phẩm
+    cartItems.addEventListener('change', (e) => {
+        if(e.target.classList.contains('select-item')){
+            updateTotal();
+        }
+    });
+}
+
+// Tính tổng tiền
+function updateTotal() {
+    let total = 0;
+    const checkboxes = document.querySelectorAll('.select-item');
+    checkboxes.forEach(cb => {
+        if(cb.checked){
+            const idx = cb.dataset.index;
+            const priceStr = cart[idx].price.replace(/[^\d]/g,''); // chỉ lấy số
+            total += parseInt(priceStr);
+        }
+    });
+    totalPriceEl.innerText = total.toLocaleString();
+}
+
+// Nút mua ngay
+buyNowBtn.addEventListener('click', () => {
+    let selected = [];
+    const checkboxes = document.querySelectorAll('.select-item');
+    checkboxes.forEach(cb => {
+        if(cb.checked){
+            selected.push(cart[cb.dataset.index].name);
+        }
+    });
+    if(selected.length === 0){
+        alert("Bạn chưa chọn sản phẩm nào!");
+    } else {
+        alert("Bạn đã mua: " + selected.join(", ") + "\nTổng tiền: " + totalPriceEl.innerText + " VND");
+        cart = cart.filter((item, index) => !checkboxes[index].checked);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        location.reload();
+    }
+});
+</script>
+
+</body>
+</html>
+
+
+

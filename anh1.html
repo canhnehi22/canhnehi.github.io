@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xem sản phẩm</title>
+  <link rel="stylesheet" href="/anh7/anh1.css">
+</head>
+<body>
+    
+
+
+  <!-- Modal -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <div class="product-container">
+        <!-- Ảnh sản phẩm -->
+        <div class="product-image">
+          <img src="/ảnh/ảnh mô hình 2.jpg" alt="Mô hình Luffy">
+        </div>
+
+        <!-- Thông tin sản phẩm -->
+        <div class="product-info">
+          <h2>Mô hình OnePiece Luffy gear 5 trạng thái chiến đấu</h2>
+          <p class="price">250.000 ₫</p>
+
+          <ul class="details">
+            <li>✅ Chiều cao: 21cm</li>
+            <li>✅ Trọng lượng: ~1000 gram</li>
+            <li>✅ Chất liệu: Nhựa PVC cao cấp</li>
+            <li>✅ Nhân vật: MONKEY D. LUFFY</li>
+            <li>✅ Phụ kiện đi kèm: Không</li>
+          </ul>
+
+          <div class="btn-group">
+            <button class="buy-btn">Thêm vào giỏ hàng</button>
+            <button class="now-btn">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("productModal");
+    const btn = document.getElementById("viewProductBtn");
+    const span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Thêm chức năng giả lập cho nút mua
+    document.querySelector(".buy-btn").onclick = () => {
+      alert("Đã thêm sản phẩm vào giỏ hàng!");
+    };
+
+    document.querySelector(".now-btn").onclick = () => {
+      alert("Chuyển sang trang thanh toán...");
+    };
+  </script>
+</body>
+</html>

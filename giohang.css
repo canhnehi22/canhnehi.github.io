@@ -1,0 +1,132 @@
+/* CSS riêng cho giỏ hàng */
+body { 
+    font-family: Arial, sans-serif; 
+    background-color: #f0f0f0; 
+    padding: 20px; 
+    min-height: 100vh;
+}
+
+h2 { 
+    text-align: center; 
+    color: blueviolet; 
+    margin-bottom: 20px; 
+}
+
+/* Nút quay lại trang chủ */
+.back-home {
+    display: inline-block; 
+    padding: 10px 20px; 
+    background: blueviolet; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 10px; 
+    margin-bottom: 20px;
+}
+
+/* Giỏ hàng */
+#cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-item { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    background: white; 
+    padding: 10px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.cart-item img { 
+    width: 120px; 
+    height: 180px; 
+    object-fit: cover; 
+    border-radius: 25px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.25);
+    animation: float 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+/* Animation float nhẹ */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Hover phóng to nhẹ */
+.cart-item img:hover {
+    transform: scale(1.05);
+}
+
+.cart-item .info { 
+    flex: 1; 
+    margin-left: 15px; 
+}
+
+.cart-item .info h4 { 
+    margin: 0; 
+    color: #333;
+    font-weight: bold;
+}
+
+.cart-item .info p { 
+    margin: 5px 0; 
+    color: #FFD43B;
+    font-weight: bold;
+}
+
+.cart-item .remove { 
+    background: red; 
+    color: white; 
+    border: none; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background 0.3s;
+}
+
+.cart-item .remove:hover {
+    background: darkred;
+}
+
+.cart-footer { 
+    margin-top: 20px; 
+    text-align: right; 
+}
+
+.cart-footer span { 
+    font-weight: bold; 
+    font-size: 18px; 
+    margin-right: 20px; 
+}
+
+.cart-footer button { 
+    background: green; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background 0.3s;
+}
+
+.cart-footer button:hover { 
+    background: darkgreen; 
+}
+
+/* Thông báo giỏ hàng trống */
+#cart-empty {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-top: 30px;
+}

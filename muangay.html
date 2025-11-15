@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi tiết sản phẩm</title>
+  <link rel="stylesheet" href="/muangay.css">
+</head>
+<body>
+
+  <!-- Nút quay lại -->
+  <div class="back-btn">
+    <a href="/link/link.html">⬅ Quay lại trang sản phẩm</a>
+  </div>
+
+  <div class="product-detail">
+    <!-- ẢNH -->
+    <div class="image-box">
+      <div class="main-image">
+        <img id="mainImg" src="/ảnh/ảnh mô hình 4.jpg" alt="Mô hình Ace">
+      </div>
+    </div>
+
+    <!-- THÔNG TIN -->
+    <div class="info-box">
+      <h2>Mô hình Portgas D. Ace</h2>
+      <p class="price">500,000 ₫</p>
+
+      <ul class="details">
+        <li>✅ Chiều Cao : 20cm</li>
+        <li>✅ Trọng Lượng : ~800 Gram</li>
+        <li>✅ Chất liệu : Nhựa PVC cao cấp</li>
+        <li>✅ Phụ kiện : Không</li>
+        <li>✅ Nhân vật : PORTGAS D. ACE</li>
+        <li>✅ Figure Anime : ONE PIECE</li>
+      </ul>
+     
+      <div class="buy-section">
+        <div class="quantity">
+          <button onclick="decrease()">-</button>
+          <input id="quantity" type="number" value="1" min="1">
+          <button onclick="increase()">+</button>
+        </div>
+        <button class="btn add">THÊM VÀO GIỎ HÀNG</button>
+        <button class="btn buy" onclick="openForm()">MUA NGAY</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 FORM MUA NGAY (ẩn) -->
+  <div id="buyForm" class="buy-form">
+    <div class="form-content">
+      <h3>Đặt hàng ngay</h3>
+      <label>Họ và tên:</label>
+      <input type="text" placeholder="Nhập họ tên của bạn">
+
+      <label>Số điện thoại:</label>
+      <input type="tel" placeholder="Nhập số điện thoại">
+
+      <label>Địa chỉ giao hàng:</label>
+      <textarea placeholder="Nhập địa chỉ của bạn"></textarea>
+
+      <div class="form-buttons">
+        <button class="btn confirm" onclick="confirmOrder()">Xác nhận mua</button>
+        <button class="btn cancel" onclick="closeForm()">Hủy</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function increase() {
+      const input = document.getElementById("quantity");
+      input.value = parseInt(input.value) + 1;
+    }
+    function decrease() {
+      const input = document.getElementById("quantity");
+      if (input.value > 1) input.value = parseInt(input.value) - 1;
+    }
+
+    // Mở form
+    function openForm() {
+      document.getElementById("buyForm").style.display = "flex";
+    }
+
+    // Đóng form
+    function closeForm() {
+      document.getElementById("buyForm").style.display = "none";
+    }
+
+    // Xác nhận đơn hàng (hiển thị thông báo)
+    function confirmOrder() {
+      alert("✅ Cảm ơn bạn! Đơn hàng đã được xác nhận.");
+      closeForm();
+    }
+  </script>
+
+</body>
+</html>
